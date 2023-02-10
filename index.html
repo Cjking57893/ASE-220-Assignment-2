@@ -29,6 +29,11 @@
           font-size: 3.5rem;
         }
       }
+
+      .btn a{
+        text-decoration: none;
+        color: black;
+      }
     </style>
 
     
@@ -215,7 +220,16 @@
 
     <script src="assets/js/getAllURLParams.js"></script>
 	<script>
-	console.log(getAllUrlParams().page);
+	  console.log(getAllUrlParams().page);
+
+    //adds all view buttons to array
+    let view_btn = document.getElementsByTagName('button');
+    console.log(view_btn);
+
+    //loops through the view_btn array and links them to the detail.html with ?pet=index
+    for(let i = 0; i < view_btn.length; i++){
+      view_btn[i].innerHTML=`<a href=./detail.html?pet=${i}>View</a>`;
+    }
 	</script>
       
   </body>
