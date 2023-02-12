@@ -47,7 +47,7 @@
 <main>
   <div class="album py-5 bg-light">
     <div class="container">
-	<h1>Pet name</h1>
+	<h1 id="pet-name">Pet name</h1>
 	<div>Pet info goes here</div>
 	<hr />
 	<h2>Image Gallery</h2>
@@ -86,7 +86,16 @@
 
     <script src="assets/js/getAllURLParams.js"></script>
 	<script>
-	console.log(getAllUrlParams().pet);
+    //fetches data from json file
+    fetch("assets/data/data.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name; //Change pet name to pet given in query string
+
+        console.log(data[getAllUrlParams().pet]);
+      })
+
+	  console.log(getAllUrlParams().pet);
 	</script>
       
   </body>
