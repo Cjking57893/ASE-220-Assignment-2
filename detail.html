@@ -48,7 +48,7 @@
   <div class="album py-5 bg-light">
     <div class="container">
 	<h1 id="pet-name"></h1>
-	<div>Pet info goes here</div>
+	<div id="pet-info"></div>
 	<hr />
 	<h2>Image Gallery</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -92,6 +92,20 @@
       .then(data => {
         //Change pet name to pet given in query string
         document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name;
+
+        //Change info on page to be info from pet given through query string
+        document.getElementById("pet-info").innerHTML = `
+          ID: ${data[getAllUrlParams().pet].id} <br>
+          Available for Adoption: ${data[getAllUrlParams().pet].isAvailableForAdoption} <br>
+          Pet Type: ${data[getAllUrlParams().pet].type} <br>
+          Sex: ${data[getAllUrlParams().pet].sex} <br>
+          Breed: ${data[getAllUrlParams().pet].breed} <br>
+          Age: ${data[getAllUrlParams().pet].age} <br>
+          Location: ${data[getAllUrlParams().pet].location} <br>
+          Spayed or Neutered: ${data[getAllUrlParams().pet].isSpayedOrNeutered} <br>
+          Vaccinated: ${data[getAllUrlParams().pet].isVaccinated} <br>
+          Additional Details: ${data[getAllUrlParams().pet].additionalDetails}
+        `
 
         //Change src attribute in img tags to images from the pet given in query string
         document.getElementById("pet-img-1").src = data[getAllUrlParams().pet].images[0];
