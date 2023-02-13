@@ -119,8 +119,9 @@
         });
       })
       .catch(error => {
-        //Displaying error alert if pet is not found
-        alert("Error: pet not found");
+        //Displaying error alert if pet is not found and redirecting back to index
+        alert("Error: Pet not found. Redirecting back to homepage.");
+        document.location.href = "/";
       });
 
 	</script>
