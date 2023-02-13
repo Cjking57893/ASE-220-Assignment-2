@@ -74,55 +74,57 @@
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/js/getAllURLParams.js"></script>
+
+    <script src="assets/js/data.js"></script>
+
 	<script>
-    //fetches data from json file
-    fetch("assets/data/data.json")
-      .then(response => response.json())
-      .then(data => {
-        //Change title of page to pet name
-        document.title = data[getAllUrlParams().pet].name;
+    console.log(data);
 
-        //Change background color of page according to pet sex
-        if (data[getAllUrlParams().pet].sex == "Male") {
-          document.getElementById("album").style.backgroundColor = "#a3c1f8";
-        }
-        else if (data[getAllUrlParams().pet].sex == "Female") {
-          document.getElementById("album").style.backgroundColor = "#d9c9fc";
-        }
+    try {
+      //Change title of page to pet name
+      document.title = data[getAllUrlParams().pet].name;
 
-        //Change pet name to pet given in query string
-        document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name;
+      //Change background color of page according to pet sex
+      if (data[getAllUrlParams().pet].sex == "Male") {
+        document.getElementById("album").style.backgroundColor = "#a3c1f8";
+      }
+      else if (data[getAllUrlParams().pet].sex == "Female") {
+        document.getElementById("album").style.backgroundColor = "#d9c9fc";
+      }
 
-        //Change info on page to be info from pet given through query string
-        document.getElementById("pet-info").innerHTML = `
-          ID: ${data[getAllUrlParams().pet].id} <br>
-          Available for Adoption: ${data[getAllUrlParams().pet].isAvailableForAdoption} <br>
-          Pet Type: ${data[getAllUrlParams().pet].type} <br>
-          Sex: ${data[getAllUrlParams().pet].sex} <br>
-          Breed: ${data[getAllUrlParams().pet].breed} <br>
-          Age: ${data[getAllUrlParams().pet].age} <br>
-          Location: ${data[getAllUrlParams().pet].location} <br>
-          Spayed or Neutered: ${data[getAllUrlParams().pet].isSpayedOrNeutered} <br>
-          Vaccinated: ${data[getAllUrlParams().pet].isVaccinated} <br>
-          Additional Details: ${data[getAllUrlParams().pet].additionalDetails}
-        `
+      //Change pet name to pet given in query string
+      document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name;
 
-        //Change src attribute in img tags to images from the pet given in query string
-        data[getAllUrlParams().pet].images.forEach(image => {
-          document.getElementById("img-container").innerHTML += `
-            <div class="col">
-              <div class="card shadow-sm">
-                <img class="img-fluid" src="${image}" style="width: 500px; height: 400px;">
-              </div>
+      //Change info on page to be info from pet given through query string
+      document.getElementById("pet-info").innerHTML = `
+        ID: ${data[getAllUrlParams().pet].id} <br>
+        Available for Adoption: ${data[getAllUrlParams().pet].isAvailableForAdoption} <br>
+        Pet Type: ${data[getAllUrlParams().pet].type} <br>
+        Sex: ${data[getAllUrlParams().pet].sex} <br>
+        Breed: ${data[getAllUrlParams().pet].breed} <br>
+        Age: ${data[getAllUrlParams().pet].age} <br>
+        Location: ${data[getAllUrlParams().pet].location} <br>
+        Spayed or Neutered: ${data[getAllUrlParams().pet].isSpayedOrNeutered} <br>
+        Vaccinated: ${data[getAllUrlParams().pet].isVaccinated} <br>
+        Additional Details: ${data[getAllUrlParams().pet].additionalDetails}
+      `
+
+      //Change src attribute in img tags to images from the pet given in query string
+      data[getAllUrlParams().pet].images.forEach(image => {
+        document.getElementById("img-container").innerHTML += `
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="img-fluid" src="${image}" style="width: 500px; height: 400px;">
             </div>
-          `
-        });
-      })
-      .catch(error => {
-        //Displaying error alert if pet is not found and redirecting back to index
-        alert("Error: Pet not found. Redirecting back to homepage.");
+          </div>
+        `
+  });
+    }
+    catch {
+      //Displaying error alert if pet is not found and redirecting back to index
+      alert("Error: Pet not found. Redirecting back to homepage.");
         document.location.href = "/";
-      });
+    }
 
 	</script>
       
