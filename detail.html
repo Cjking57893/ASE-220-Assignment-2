@@ -45,7 +45,7 @@
 </header>
 
 <main>
-  <div class="album py-5 bg-light">
+  <div class="album py-5" id="album">
     <div class="container">
 	<h1 id="pet-name"></h1>
 	<div id="pet-info"></div>
@@ -81,6 +81,14 @@
       .then(data => {
         //Change title of page to pet name
         document.title = data[getAllUrlParams().pet].name;
+
+        //Change background color of page according to pet sex
+        if (data[getAllUrlParams().pet].sex == "Male") {
+          document.getElementById("album").style.backgroundColor = "#a3c1f8";
+        }
+        else if (data[getAllUrlParams().pet].sex == "Female") {
+          document.getElementById("album").style.backgroundColor = "#d9c9fc";
+        }
 
         //Change pet name to pet given in query string
         document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name;
