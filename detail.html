@@ -93,6 +93,9 @@
     fetch("assets/data/data.json")
       .then(response => response.json())
       .then(data => {
+        //Change title of page to pet name
+        document.title = data[getAllUrlParams().pet].name;
+
         //Change pet name to pet given in query string
         document.getElementById("pet-name").innerHTML = data[getAllUrlParams().pet].name;
 
