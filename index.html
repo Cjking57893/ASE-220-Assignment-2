@@ -237,18 +237,23 @@
     let card = document.getElementsByClassName('card');
     let card_text = document.getElementsByClassName('card-text');
     let p_type = document.getElementsByClassName('text-muted');
-    for(let i=0; i<card.length; i++){
-      card[i].innerHTML+=`
-      <img src=${data[i].images[0]} height="400">
-      `;
-      card_text[i].innerText = data[i].additionalDetails;
-      p_type[i].innerText = data[i].type;
+
+    //populates card
+    function popCard(pageNum=0){
+      for(let i=0; i<card.length; i++){
+        card[i].innerHTML+=`
+        <img src=${data[i].images[0]} height="400">
+        `;
+        card_text[i].innerText = data[i].additionalDetails;
+        p_type[i].innerText = data[i].type;
+      }
     }
+    popCard();
 
 
     //pagination
     let page_container = document.getElementById('page-container');
-
+    //items per page
     let ipp = 6;
     let num_pages = Math.ceil(data.length/ipp);
     for(let i=0;i<num_pages;i++){
