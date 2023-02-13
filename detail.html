@@ -51,22 +51,8 @@
 	<div id="pet-info"></div>
 	<hr />
 	<h2>Image Gallery</h2>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="img-fluid" id="pet-img-1" style="width: 500px; height: 400px;">
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="img-fluid" id="pet-img-2" style="width: 500px; height: 400px;">
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="img-fluid" id="pet-img-3" style="width: 500px; height: 400px">
-          </div>
-        </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="img-container">
+        
       </div>
       <a href="index.html">
         <button type="button" class="btn btn-primary" style="margin-top: 2em">Back</button>
@@ -114,14 +100,17 @@
         `
 
         //Change src attribute in img tags to images from the pet given in query string
-        document.getElementById("pet-img-1").src = data[getAllUrlParams().pet].images[0];
-        document.getElementById("pet-img-2").src = data[getAllUrlParams().pet].images[1];
-        document.getElementById("pet-img-3").src = data[getAllUrlParams().pet].images[2];
-
-        console.log(data[getAllUrlParams().pet]);
+        data[getAllUrlParams().pet].images.forEach(image => {
+          document.getElementById("img-container").innerHTML += `
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="img-fluid" src="${image}" style="width: 500px; height: 400px;">
+              </div>
+            </div>
+          `
+        });
       })
 
-	  console.log(getAllUrlParams().pet);
 	</script>
       
   </body>
