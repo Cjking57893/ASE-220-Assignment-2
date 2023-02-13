@@ -204,15 +204,9 @@
       </div>
     </div>
   </div>
-  <div>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <button>7</button>
-    <button>8</button>
+
+  <div id="page-container">
+
   </div>
 
 </main>
@@ -229,23 +223,42 @@
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/js/getAllURLParams.js"></script>
+    <script src="assets/js/data.js"></script>
 	<script>
 	  console.log(getAllUrlParams().page);
 
     //adds all view buttons to array
     let view_btn = document.getElementsByClassName('btn');
-    console.log(view_btn);
 
     //loops through the view_btn array and links them to the detail.html with ?pet=index
     for(let i = 0; i < view_btn.length; i++){
       view_btn[i].innerHTML=`<a href=./detail.html?pet=${i}>View</a>`;
     }
-    let images = document.getElementsByClassName('card');
-    console.log(images);
-    for(let i=0; i<images.length; i++){
-      images[i].innerHTML+=`
-      <img src="https://random.dog/02f1d7d0-9ff7-44af-8066-dd9247ebe74d.jpg">
+    let card = document.getElementsByClassName('card');
+    let card_text = document.getElementsByClassName('card-text');
+    let p_type = document.getElementsByClassName('text-muted');
+    for(let i=0; i<card.length; i++){
+      card[i].innerHTML+=`
+      <img src=${data[i].images[0]} height="400">
       `;
+      card_text[i].innerText = data[i].additionalDetails;
+      p_type[i].innerText = data[i].type;
+    }
+
+
+    //pagination
+    let page_container = document.getElementById('page-container');
+
+    let ipp = 6;
+    let num_pages = Math.ceil(data.length/ipp);
+    for(let i=0;i<num_pages;i++){
+      page_container.innerHTML += `
+        <button onclick="changePage(${i+1})">${i+1}</button>
+      `;
+    }
+    //pagination button clicked
+    function changePage(i){
+      location.replace(`index.html?page=${i}`);
     }
 
 	</script>
