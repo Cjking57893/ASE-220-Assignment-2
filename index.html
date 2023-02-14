@@ -218,6 +218,12 @@
     function changePage(i){
       window.location = `index.html?page=${i}`;
     }
+    
+    //setting page query string to 1 on first load and reloading page
+    if (getAllUrlParams().page == undefined) {
+      window.history.pushState({}, "", "index.html?page=1")
+      window.location.reload();
+    }
 
 	</script>
       
