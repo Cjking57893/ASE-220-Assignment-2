@@ -235,10 +235,7 @@
     //adds all view buttons to array
     let view_btn = document.getElementsByClassName('btn');
 
-    //loops through the view_btn array and links them to the detail.html with ?pet=index
-    for(let i = 0; i < view_btn.length; i++){
-      view_btn[i].innerHTML=`<a href=./detail.html?pet=${i}>View</a>`;
-    }
+
     let card = document.getElementsByClassName('card');
     let card_text = document.getElementsByClassName('card-text');
     let p_type = document.getElementsByClassName('text-muted');
@@ -248,11 +245,12 @@
       let index = ipp*(pageNum-1);
       for(let i=index; i<card.length+index; i++){
         card[i-index].innerHTML+=`
-        <img src=${data[i].images[0]} height="400">
-        <p>${i}</p>`;
+        <img src=${data[i].images[0]} height="400">`;
         card_text[i-index].innerText = data[i].additionalDetails;
         p_type[i-index].innerText = data[i].type;
+        view_btn[i-index].innerHTML=`<a href=./detail.html?pet=${i}>View</a>`;
       }
+      document.body.innerHTML+=`page: ${pageNum}`;
     }
 
 
