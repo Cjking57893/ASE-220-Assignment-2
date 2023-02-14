@@ -193,8 +193,13 @@
     //populates card
     popCard(current_page);
     function popCard(pageNum){
+
       let index = ipp*(pageNum-1);
       for(let i=index; i<card.length+index; i++){
+        if (data[i] == undefined) {
+          break;
+        }
+        
         card[i-index].innerHTML+=`
         <img src=${data[i].images[0]} height="400">`;
         card_text[i-index].innerText = data[i].additionalDetails;
@@ -202,7 +207,7 @@
         view_btn[i-index].innerHTML=`<a href=./detail.html?pet=${i}>View</a>`;
       }
       document.body.innerHTML+=`page: ${pageNum}`;
-    }
+    };
 
 
     //pagination
