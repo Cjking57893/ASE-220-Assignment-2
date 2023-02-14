@@ -1,81 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Album example · Bootstrap v5.0</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Album example · Bootstrap v5.0</title>
 
-    
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
-    <!-- Bootstrap core CSS -->
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
-    
-  </head>
-  <body>
-    
-<header>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
         <strong>Pet adoption website</strong>
-      </a>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="album py-5" id="album">
-    <div class="container">
-	<h1 id="pet-name"></h1>
-	<div id="pet-info"></div>
-	<hr />
-	<h2>Image Gallery</h2>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="img-container">
-        
+        </a>
       </div>
-      <button type="button" class="btn btn-outline-dark" style="margin-top: 2em" onclick="history.back()">Back</button>
     </div>
-    
-  </div>
-</main>
+  </header>
 
-<footer class="text-muted py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-  </div>
-</footer>
+  <main>
+    <div class="album py-5" id="album">
+      <div class="container">
+        <h1 id="pet-name"></h1>
+        <div id="pet-info"></div>
+        <hr />
+        <h2>Image Gallery</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="img-container">
+
+        </div>
+        <button type="button" class="btn btn-outline-dark" style="margin-top: 2em"
+          onclick="history.back()">Back</button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+  </footer>
 
 
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/getAllURLParams.js"></script>
+  <script src="assets/js/getAllURLParams.js"></script>
 
-    <script src="assets/js/data.js"></script>
+  <script src="assets/js/data.js"></script>
 
-	<script>
+  <script>
     console.log(data);
 
     try {
@@ -116,7 +119,7 @@
             </div>
           </div>
         `
-  });
+      });
     }
     catch {
       //Displaying error alert if pet is not found and redirecting back to index
@@ -124,7 +127,8 @@
       document.location.href = "/";
     }
 
-	</script>
-      
-  </body>
+  </script>
+
+</body>
+
 </html>
