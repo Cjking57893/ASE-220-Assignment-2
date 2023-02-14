@@ -153,9 +153,9 @@
           </div>
         </div>
 
-        <div class="col">
+        <!--<div class="col">
           <div class="card shadow-sm">
-            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
             <div class="card-body">
               <p class="card-text">Key details about the pet.</p>
@@ -171,7 +171,7 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
             <div class="card-body">
               <p class="card-text">Key details about the pet.</p>
@@ -187,7 +187,7 @@
         </div>
         <div class="col">
           <div class="card shadow-sm">
-            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+            <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
             <div class="card-body">
               <p class="card-text">Key details about the pet.</p>
@@ -198,7 +198,7 @@
                 </div>
                 <small class="text-muted">Pet type</small>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -226,6 +226,11 @@
     <script src="assets/js/data.js"></script>
 	<script>
 	  console.log(getAllUrlParams().page);
+    let current_page = getAllUrlParams().page;
+
+    //items per page
+    let ipp = 6;
+    let num_pages = Math.ceil(data.length/ipp);
 
     //adds all view buttons to array
     let view_btn = document.getElementsByClassName('btn');
@@ -237,25 +242,24 @@
     let card = document.getElementsByClassName('card');
     let card_text = document.getElementsByClassName('card-text');
     let p_type = document.getElementsByClassName('text-muted');
-
     //populates card
-    function popCard(pageNum=0){
-      for(let i=0; i<card.length; i++){
-        card[i].innerHTML+=`
+    popCard(current_page);
+    function popCard(pageNum){
+      let index = ipp*(pageNum-1);
+      for(let i=index; i<card.length+index; i++){
+        card[i-index].innerHTML+=`
         <img src=${data[i].images[0]} height="400">
-        `;
-        card_text[i].innerText = data[i].additionalDetails;
-        p_type[i].innerText = data[i].type;
+        <p>${i}</p>`;
+        card_text[i-index].innerText = data[i].additionalDetails;
+        p_type[i-index].innerText = data[i].type;
       }
     }
-    popCard();
 
 
     //pagination
     let page_container = document.getElementById('page-container');
-    //items per page
-    let ipp = 6;
-    let num_pages = Math.ceil(data.length/ipp);
+
+    //adds buttons for page
     for(let i=0;i<num_pages;i++){
       page_container.innerHTML += `
         <button onclick="changePage(${i+1})">${i+1}</button>
@@ -263,7 +267,7 @@
     }
     //pagination button clicked
     function changePage(i){
-      location.replace(`index.html?page=${i}`);
+      window.location = `index.html?page=${i}`;
     }
 
 	</script>
